@@ -685,3 +685,26 @@ ptv:FormatPolicy
 	skos:prefLabel "Format Policy"@en ;
 	skos:altLabel "File Format Policy"@en ;
 	rdfs:label "Format Policy"@en .
+
+ptv:AccessibilityPolicy
+    a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+		ptv:Policy ;
+	skos:prefLabel "Accessibility Policy"@en ;
+	skos:altLabel "Inclusive Access Policy"@en ;
+	rdfs:label "Accessibility Policy"@en .
+
+ptv:BrandPolicy
+    a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+		ptv:Policy ;
+	skos:prefLabel "Brand Policy"@en ;
+	skos:altLabel "Branding Policy"@en ;
+	rdfs:label "Brand Policy"@en .
+
+ptv:CorporateIdentityPolicy
+    a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+		ptv:BrandPolicy ;
+	skos:prefLabel "Corporate Identity Policy"@en ;
+	rdfs:label "Corporate Identity Policy"@en .

@@ -629,17 +629,25 @@ ptv:DisclosureControlPolicy
 	skos:prefLabel "Disclosure Control Policy"@en ;
 	rdfs:label "Disclosure Control Policy"@en .
 
-ptv:RightsManagementPolicy
-	a owl:Class, skos:Concept ;
+ptv:RightsPolicy
+    a owl:Class, skos:Concept ;
+    rdfs:subClassOf
+       ptv:Policy ;
+    skos:prefLabel "Rights Policy"@en ;
+    skos:altLabel "Rights Management Policy"@en ;
+    rdfs:label "Rights Policy"@en .
+
+ptv:PermissionsPolicy
+    a owl:Class, skos:Concept ;
 	rdfs:subClassOf
-		ptv:Policy ;
-	skos:prefLabel "Rights Management Policy"@en ;
-	rdfs:label "Rights Management Policy"@en .
+	    ptv:RightsPolicy ;
+    skos:prefLabel "Permissions Policy"@en ;
+    rdfs:label "Permissions Policy"@en .
 
 ptv:IntellectualPropertyRightsPolicy
 	a owl:Class, skos:Concept ;
 	rdfs:subClassOf
-		ptv:RightsManagementPolicy ;
+		ptv:RightsPolicy ;
 	skos:prefLabel "Intellectual Property Rights Policy"@en ;
 	skos:altLabel "IPR Policy"@en ;
 	rdfs:label "Intellectual Property Rights Policy"@en .
@@ -647,21 +655,21 @@ ptv:IntellectualPropertyRightsPolicy
 ptv:CopyrightPolicy
 	a owl:Class, skos:Concept ;
 	rdfs:subClassOf
-		ptv:RightsManagementPolicy ;
+		ptv:RightsPolicy ;
 	skos:prefLabel "Copyright Policy"@en ;
 	rdfs:label "Copyright Policy"@en .
 
 ptv:OwnershipPolicy
 	a owl:Class, skos:Concept ;
 	rdfs:subClassOf
-		ptv:RightsManagementPolicy ;
+		ptv:RightsPolicy ;
 	skos:prefLabel "Ownership Policy"@en ;
 	rdfs:label "Ownership Policy"@en .
 
 ptv:LicensingPolicy
 	a owl:Class, skos:Concept ;
 	rdfs:subClassOf
-		ptv:RightsManagementPolicy ;
+		ptv:RightsPolicy ;
 	skos:prefLabel "Licensing Policy"@en ;
 	skos:altLabel "License Policy"@en ;
 	rdfs:label "Licensing Policy"@en .

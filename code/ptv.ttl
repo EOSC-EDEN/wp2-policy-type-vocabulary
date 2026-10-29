@@ -8,12 +8,12 @@
 
 ptv:
 	a owl:Ontology ;
-	rdfs:label "Policy Type Vocabulary"@en ;
-	dct:title "Policy Type Vocabulary"@en ;
+	rdfs:label "Policy and Standard Type Vocabulary"@en ;
+	dct:title "Policy and Standard Type Vocabulary"@en ;
 	dct:type  mod:SemanticArtefact;
 	dct:subject "policy";
 	mod:acronym "PTV";
-	dct:description "An ontology for defining and classifying policy types and their relationships to established policy vocabularies such as DCTERMS and ODRL."@en;
+	dct:description "An ontology for defining and classifying policy and standard types and their relationships to established policy vocabularies such as DCTERMS and ODRL."@en;
 	dct:creator "Robert Huber";
 	dct:created "2026-08-11";
 	dct:issued "2026-08-11";
@@ -60,14 +60,34 @@ ptv:Organisation
 	rdfs:comment "Represents organisations as assets targeted by policies."@en .
 
 
+# Standards
+
+ptv:MetadataStandard
+a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+		dct:Standard;
+	rdfs:label "Metadata Standard"@en ;
+	skos:prefLabel "Metadata Standard"@en.
+
+ptv:PIDStandard
+a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+		dct:Standard;
+	rdfs:label "PID Standard"@en ;
+	skos:altLabel "Persistent Identifier Standard"@en ;
+	skos:prefLabel "PID Standard"@en.
+
+
 # Policies
 
 ptv:Policy
 a owl:Class, skos:Concept ;
 	rdfs:subClassOf
 		dct:Policy,
+		dct:Standard,
 		odrl:Policy ;
 	skos:prefLabel "Policy"@en;
+	rdfs:comment "A policy is a formally documented and published set of rules, principles, or requirements that applies within a specific domain. It is considered both a policy and a standard, as it establishes a normative framework for the activities or resources within its scope. Policies may additionally be expressed as ODRL policies to represent permissions, prohibitions, and obligations in a machine-readable form."@en ;
 	rdfs:label "Policy"@en.
 
 ptv:OrganisationalPolicy
@@ -77,6 +97,12 @@ ptv:OrganisationalPolicy
 	skos:prefLabel "Organisational Policy"@en;
 	skos:altLabel "Institutional Policy"@en;
 	rdfs:label "Organisational Policy"@en.
+
+ptv:MissionStatement
+    a owl:Class, skos:Concept ;
+    rdfs:subClassOf ptv:OrganisationalPolicy ;
+    skos:prefLabel "Mission Statement"@en ;
+    rdfs:label "Mission Statement"@en .
 
 ptv:AcademyPolicy
 	a owl:Class, skos:Concept ;
@@ -289,6 +315,13 @@ ptv:DataQualityPolicy
 	skos:prefLabel "Data Quality Policy"@en;
 	rdfs:label "Data Quality Policy"@en.
 
+ptv:QualityAssessmentPolicy
+	a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+		ptv:QualityPolicy ;
+	skos:prefLabel "Quality Assessment Policy"@en;
+	rdfs:label "Quality Assessment Policy"@en.
+
 ptv:AvailabilityPolicy
 	a owl:Class, skos:Concept ;
 	rdfs:subClassOf
@@ -349,7 +382,7 @@ ptv:CollectionPolicy
 		ptv:Policy ;
 	skos:prefLabel "Collection Policy"@en;
 	skos:altLabel "Records Management Policy"@en;
-	skos:altLabel "Collections Development Policy"@en;
+	skos:altLabel "Collection Development Policy"@en;
 	rdfs:label "Collection Policy"@en.
 
 ptv:AccrualPolicy
@@ -441,7 +474,6 @@ ptv:InteroperabilityPolicy
 	skos:prefLabel "Interoperability Policy"@en;
 	rdfs:label "Interoperability Policy"@en.
 
-
 ptv:DigitizationPolicy
 	rdfs:subClassOf
 		ptv:Policy ;
@@ -454,6 +486,14 @@ ptv:PreservationPolicy
 		ptv:Policy ;
 	skos:prefLabel "Preservation Policy"@en;
 	rdfs:label "Preservation Policy"@en.
+
+ptv:PreservationPlan
+	rdfs:subClassOf
+		ptv:Policy ;
+	skos:related ptv:PreservationPolicy;
+	skos:prefLabel "Preservation Plan"@en;
+	skos:altLabel "Preservation Action Plan"@en;
+	rdfs:label "Preservation Plan"@en.
 
 ptv:DataPreservationPolicy
 	rdfs:subClassOf
@@ -517,6 +557,13 @@ ptv:MetadataPolicy
 	skos:prefLabel "Metadata Policy"@en ;
 	rdfs:label "Metadata Policy"@en .
 
+ptv:MetadataRecordingPolicy
+	a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+		ptv:MetadataPolicy ;
+	skos:prefLabel "Metadata Recording Policy"@en ;
+	rdfs:label "Metadata Recording Policy"@en .
+
 ptv:CataloguingPolicy
 	a owl:Class, skos:Concept ;
 	rdfs:subClassOf
@@ -573,6 +620,14 @@ ptv:ContinuityPolicy
     skos:prefLabel "Continuity Policy"@en ;
     rdfs:label "Continuity Policy"@en .
 
+ptv:ExitPolicy
+    a owl:Class, skos:Concept ;
+    rdfs:subClassOf ptv:ContinuityPolicy ;
+    skos:prefLabel "Exit Policy"@en ;
+    skos:altLabel "Exit Scenario Policy"@en ;
+    skos:altLabel "Exit Scenario Plan"@en ;
+    rdfs:label "Exit Policy"@en .
+
 ptv:BackupPolicy
     a owl:Class, skos:Concept ;
     rdfs:subClassOf
@@ -604,8 +659,10 @@ ptv:ConfidentialityPolicy
 ptv:RecordsIntegrityPolicy
 	a owl:Class, skos:Concept ;
 	rdfs:subClassOf
-		ptv:ProtectionPolicy ;
+		ptv:ProtectionPolicy ,
+		ptv:FormatPolicy ;
 	skos:prefLabel "Records Integrity Policy"@en ;
+	skos:altLabel "Integrity Checking Policy"@en ;
 	rdfs:label "Records Integrity Policy"@en .
 
 ptv:AuthenticityPolicy
@@ -709,10 +766,18 @@ ptv:DataSharingPolicy
 	skos:prefLabel "Data Sharing Policy"@en ;
 	rdfs:label "Data Sharing Policy"@en .
 
-ptv:PersistentIdentifierPolicy
+ptv:IdentifierPolicy
 	a owl:Class, skos:Concept ;
 	rdfs:subClassOf
 		ptv:Policy ;
+	skos:prefLabel "Identifier Policy"@en ;
+	skos:altLabel "Identifier Creation and Management Policy"@en ;
+	rdfs:label "Identifier Policy"@en .
+
+ptv:PersistentIdentifierPolicy
+	a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+		ptv:IdentifierPolicy ;
 	skos:prefLabel "Persistent Identifier Policy"@en ;
 	skos:altLabel "PID Policy"@en ;
 	rdfs:label "Persistent Identifier Policy"@en .
@@ -775,6 +840,39 @@ ptv:FormatPolicy
 	skos:prefLabel "Format Policy"@en ;
 	skos:altLabel "File Format Policy"@en ;
 	rdfs:label "Format Policy"@en .
+
+ptv:FileFormatIdentificationPolicy
+    a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+		ptv:FormatPolicy ;
+	skos:prefLabel "File Format Identification Policy"@en ;
+	skos:altLabel "File Format Detection Policy"@en ;
+	rdfs:label "File Format Identification Policy"@en .
+
+ptv:PreferredFileFormatsPolicy
+    a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+		ptv:FormatPolicy ;
+	skos:prefLabel "Preferred File Formats Policy"@en ;
+	rdfs:label "Preferred File Formats Policy"@en .
+
+ptv:FileFormatValidationPolicy
+    a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+		ptv:FormatPolicy ;
+	skos:prefLabel "File Format Validation Policy"@en ;
+	rdfs:label "File Format Validation Policy"@en .
+
+ptv:DerivativePolicy
+    a owl:Class, skos:Concept ;
+    rdfs:subClassOf ptv:FormatPolicy ;
+    skos:prefLabel "Derivative Policy"@en ;
+    skos:altLabel "Format Derivation Policy"@en ;
+    skos:altLabel "Format Derivative Policy"@en ;
+    skos:altLabel "Derivative Generation Policy"@en ;
+    skos:altLabel "Derivative Creation Policy"@en ;
+    skos:altLabel "Format Transformation Policy"@en ;
+    rdfs:label "Derivative Policy"@en .
 
 ptv:AccessibilityPolicy
     a owl:Class, skos:Concept ;
@@ -856,3 +954,57 @@ ptv:SalesPolicy
 	    ptv:MonetizationPolicy;
 	skos:prefLabel "Sales Policy"@en ;
 	rdfs:label "Sales Policy"@en .
+
+ptv:EmulationPolicy
+    a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+	    ptv:Policy;
+	skos:prefLabel "Emulation Policy"@en ;
+	rdfs:label "Emulation Policy"@en .
+
+ptv:EmulationRenderingPolicy
+    a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+	    ptv:EmulationPolicy;
+	skos:prefLabel "Emulation and Rendering Policy"@en ;
+	rdfs:label "Emulation and Rendering Policy"@en .
+
+ptv:PackagingPolicy
+    a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+	    ptv:CurationPolicy;
+	skos:prefLabel "Packaging Policy"@en ;
+	rdfs:label "Packaging Policy"@en .
+
+
+ptv:StoragePolicy
+    a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+	    ptv:Policy;
+	skos:prefLabel "Storage Policy"@en ;
+	skos:altLabel "Storage Management Policy"@en ;
+	rdfs:label "Storage Policy"@en .
+
+ptv:ChecksumPolicy
+    a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+	    ptv:StoragePolicy;
+	skos:prefLabel "Checksum Policy"@en ;
+	skos:altLabel "Storage Checksum Policy"@en ;
+	rdfs:label "Checksum Policy"@en .
+
+ptv:ReplicationPolicy
+    a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+	    ptv:StoragePolicy;
+	skos:prefLabel "Replication Policy"@en ;
+	skos:altLabel "Copy Policy"@en ;
+	skos:altLabel "Storage Copies Policy"@en ;
+	rdfs:label "Replication Policy"@en .
+
+ptv:StorageMediaPolicy
+    a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+	    ptv:StoragePolicy;
+	skos:prefLabel "Storage Media Policy"@en ;
+	rdfs:label "Storage Media Policy"@en .

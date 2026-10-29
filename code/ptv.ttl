@@ -613,6 +613,15 @@ ptv:ResiliencePolicy
     skos:prefLabel "Resilience Policy"@en ;
     rdfs:label "Resilience Policy"@en .
 
+ptv:RiskManagementPolicy
+    a owl:Class, skos:Concept ;
+    rdfs:subClassOf
+        ptv:ResiliencePolicy ;
+    skos:prefLabel "Risk Management Policy"@en ;
+    skos:altLabel "Risk Mitigation Policy"@en ;
+    skos:altLabel "Risk Policy"@en ;
+    rdfs:label "Risk Management Policy"@en .
+
 ptv:ContinuityPolicy
     a owl:Class, skos:Concept ;
     rdfs:subClassOf

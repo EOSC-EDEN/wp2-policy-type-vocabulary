@@ -606,6 +606,14 @@ ptv:DataProtectionPolicy
 	skos:prefLabel "Data Protection Policy"@en ;
 	rdfs:label "Data Protection Policy"@en .
 
+ptv:DataProcessingPolicy
+	a owl:Class, skos:Concept ;
+	rdfs:subClassOf
+		ptv:ProtectionPolicy ;
+	skos:prefLabel "Data Processing Policy"@en ;
+	skos:altLabel "Processing Policy"@en ;
+	rdfs:label "Data Processing Policy"@en .
+
 ptv:ResiliencePolicy
     a owl:Class, skos:Concept ;
     rdfs:subClassOf

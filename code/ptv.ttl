@@ -261,6 +261,7 @@ ptv:DepositionPolicy
 	rdfs:subClassOf
 		ptv:Policy ;
 	skos:prefLabel "Deposition Policy"@en;
+	skos:altLabel "Depositing Policy"@en;
 	rdfs:label "Deposition Policy"@en.
 
 ptv:RedepositionPolicy
@@ -268,6 +269,7 @@ ptv:RedepositionPolicy
 	rdfs:subClassOf
 		ptv:DepositionPolicy;
 	skos:prefLabel "Redeposition Policy"@en;
+	skos:altLabel "Redepositing Policy"@en;
 	rdfs:label "Deposition Policy"@en.
 
 ptv:EthicsPolicy
